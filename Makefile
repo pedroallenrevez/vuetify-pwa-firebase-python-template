@@ -10,16 +10,17 @@ firebase-deploy:
 deploy: build firebase-deploy
 
 # ============================ DOCKER ===============================
-test: build run
+test: build-images run-docker
 build-images: build-image-frontend build-image-backend
 build-image-frontend:
 	docker build -t frontend frontend
 build-image-backend:
 	docker build -t backend backend
+
 run-docker: 
 	docker-compose up
 test-backend:
-	make build-backend
+	make build-image-backend
 	docker-compose -f docker-compose-backend.yaml up
 
 # ============================ LIVE TEST ===============================

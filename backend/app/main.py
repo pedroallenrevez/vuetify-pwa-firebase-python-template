@@ -1,7 +1,11 @@
 from fastapi import FastAPI
+import firebase_admin as fb
+from firebase_admin import credentials
 
 app = FastAPI()
 
+cred = credentials.Certificate("secrets.json")
+fb.initialize_app(cred)
 
 @app.get("/")
 def read_root():
