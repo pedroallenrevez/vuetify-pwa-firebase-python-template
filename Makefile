@@ -1,29 +1,35 @@
-all: build run
-
-build-frontend:
-	docker build -t frontend frontend
-
-build-backend:
-	docker build -t backend backend
-
-build: build-frontend build-backend
-
-run: 
-	docker-compose up
+# ============================ DEPLOY ===============================
+build:
+	cd frontend/vuetify-pwa-firebase-python-template/ && \
+	yarn build
 
 firebase-deploy:
-	cd frontend/vuetify-pwa-firebase-python-template/ && firebase deploy --only hosting:vue-example-template
+	cd frontend/vuetify-pwa-firebase-python-template/ && \
+	firebase deploy 
 
-# TESTING COMMANDS
+deploy: build firebase-deploy
+
+# ============================ DOCKER ===============================
+test: build run
+build-images: build-image-frontend build-image-backend
+build-image-frontend:
+	docker build -t frontend frontend
+build-image-backend:
+	docker build -t backend backend
+run-docker: 
+	docker-compose up
 test-backend:
 	make build-backend
 	docker-compose -f docker-compose-backend.yaml up
 
+# ============================ LIVE TEST ===============================
 serve-frontend:
-	cd frontend/vuetify-pwa-firebase-python-template/ && yarn serve
+	cd frontend/vuetify-pwa-firebase-python-template/ && \
+	yarn serve
 
 serve-backend:
-	cd backend/ && uvicorn main:app --reload
+	cd backend/ && \
+	uvicorn main:app --reload
 
 install:
 	npm install -g firebase-tools
