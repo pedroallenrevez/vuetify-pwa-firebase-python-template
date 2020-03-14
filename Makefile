@@ -26,7 +26,7 @@ test-backend:
 # ============================ LIVE TEST ===============================
 serve-frontend:
 	cd frontend/vuetify-pwa-firebase-python-template/ && \
-	yarn serve
+	yarn serve --port 8081
 
 serve-backend:
 	cd backend/ && \
