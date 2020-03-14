@@ -1,4 +1,4 @@
-# home-dapp
+# vuetify-pwa-firebase-python-template
 
 ## Project setup
 ```
