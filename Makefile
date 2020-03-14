@@ -11,6 +11,9 @@ build: build-frontend build-backend
 run: 
 	docker-compose up
 
+firebase-deploy:
+	cd frontend/vuetify-pwa-firebase-python-template/ && firebase deploy --only hosting:vue-example-template
+
 # TESTING COMMANDS
 test-backend:
 	make build-backend
@@ -21,3 +24,6 @@ serve-frontend:
 
 serve-backend:
 	cd backend/ && uvicorn main:app --reload
+
+install:
+	npm install -g firebase-tools
