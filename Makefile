@@ -1,2 +1,2 @@
 serve:
-	cd web/ && yarn serve
+	cd vuetify-pwa-firebase-python-template/ && yarn serve
